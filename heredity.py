@@ -150,9 +150,9 @@ def joint_probability(people, one_gene, two_genes, have_trait):
             prob2 = PROBS["gene"][2]
             prob0 = PROBS["gene"][0]
         else:
-            mpass = (1 - PROBS["mutation"]) if person["mother"] in two_genes else (.5 * (1 - PROBS["mutation"])) if person["mother"] in one_gene else PROBS["mutation"]
+            mpass = (1 - PROBS["mutation"]) if person["mother"] in two_genes else (.5) if person["mother"] in one_gene else PROBS["mutation"]
 
-            fpass = (1 - PROBS["mutation"]) if person["father"] in two_genes else (.5 * (1 - PROBS["mutation"])) if person["father"] in one_gene else PROBS["mutation"]
+            fpass = (1 - PROBS["mutation"]) if person["father"] in two_genes else (.5) if person["father"] in one_gene else PROBS["mutation"]
 
             prob2 = mpass * fpass
             prob1 = (fpass * (1 - mpass)) + (mpass * (1 - fpass))
