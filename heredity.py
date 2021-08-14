@@ -207,13 +207,14 @@ def normalize(probabilities):
     is normalized (i.e., sums to 1, with relative proportions the same).
     """
     for person in probabilities:
-        probabilities[person]["trait"][True] = probabilities[person]["trait"][True] / (probabilities[person]["trait"][False] + probabilities[person]["trait"][True])
-        probabilities[person]["trait"][False] = probabilities[person]["trait"][False] / (probabilities[person]["trait"][True] + probabilities[person]["trait"][False])
+        sum = (probabilities[person]["trait"][False] + probabilities[person]["trait"][True])
+        probabilities[person]["trait"][True] = probabilities[person]["trait"][True] / sum
+        probabilities[person]["trait"][False] = probabilities[person]["trait"][False] / sum
 
-        probabilities[person]["gene"][2] = probabilities[person]["gene"][2] / (probabilities[person]["gene"][2] + probabilities[person]["gene"][1] + probabilities[person]["gene"][0])
-        probabilities[person]["gene"][1] = probabilities[person]["gene"][1] / (probabilities[person]["gene"][2] + probabilities[person]["gene"][1] + probabilities[person]["gene"][0])
-        probabilities[person]["gene"][0] = probabilities[person]["gene"][0] / (probabilities[person]["gene"][2] + probabilities[person]["gene"][1] + probabilities[person]["gene"][0])
-        
+        sum = (probabilities[person]["gene"][2] + probabilities[person]["gene"][1] + probabilities[person]["gene"][0])
+        probabilities[person]["gene"][2] = probabilities[person]["gene"][2] / sum
+        probabilities[person]["gene"][1] = probabilities[person]["gene"][1] / sum
+        probabilities[person]["gene"][0] = probabilities[person]["gene"][0] / sum
 
 if __name__ == "__main__":
     main()
